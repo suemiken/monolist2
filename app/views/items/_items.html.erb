@@ -4,7 +4,7 @@
       <div class="item-box">
         <div class="image">
           <div class="img-wrap">
-            <%= image_tag(item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', ''), alt: "no-image.png") %>
+            <%= image_tag(item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', ''), alt: item['itemNmae']) %>
           </div>
         </div>
         <div class="detail">
