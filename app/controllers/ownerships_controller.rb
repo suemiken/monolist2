@@ -11,7 +11,7 @@ class OwnershipsController < ApplicationController
     # itemsテーブルに存在しない場合は楽天のデータを登録する。
     if @item.new_record?
       # TODO 商品情報の取得 RakutenWebService::Ichiba::Item.search を用いてください
-      items = {}
+      items = RakutenWebService::Ichiba::Item.search(:itemCode => params[:item_code])
 
       item                  = items.first
       @item.title           = item['itemName']
@@ -21,6 +21,15 @@ class OwnershipsController < ApplicationController
       @item.detail_page_url = item['itemUrl']
       @item.save!
     end
+    
+    if params[:type] == "Want"
+      want(item)
+    else
+      have(item)
+    end
+    
+    redirect_to new_item_path
+
 
     # TODO ユーザにwant or haveを設定する
     # params[:type]の値にHaveボタンが押された時には「Have」,
