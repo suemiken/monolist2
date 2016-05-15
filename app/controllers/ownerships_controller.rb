@@ -21,22 +21,24 @@ class OwnershipsController < ApplicationController
       @item.detail_page_url = item['itemUrl']
       @item.save!
     end
-    
+  
     if params[:type] == "Want"
-      want(item)
-    else
-      have(item)
+      if current_user.want?(@item)
+        current_user.want(@item)
+      else
+        current_user.unwant(@item)
+      end
+    elsif params[:type] == "Have"
+      if current_user.have?(@item)
+        current_user.have(@item)
+      else
+        current_user.unhave(@item)
+      end
     end
-    
-    redirect_to new_item_path
-
-
+  end
     # TODO ユーザにwant or haveを設定する
     # params[:type]の値にHaveボタンが押された時には「Have」,
     # Wantボタンが押された時には「Want」が設定されています。
-    
-
-  end
 
   def destroy
     @item = Item.find(params[:item_id])

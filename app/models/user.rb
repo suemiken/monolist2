@@ -37,26 +37,26 @@ class User < ActiveRecord::Base
 
   ## TODO 実装
   def have(item)
-    current_user.haves.create(item_id: item.id, user_id: current_user.id)
+    haves.create(item_code: item.id)
   end
 
   def unhave(item)
-    current_user.havas.find_by(item_id: item.id, user_id: current_user.id).destroy
+    haves.find_by(item_code: item.id).destroy
   end
 
   def have?(item)
-    current_user.hava_items.include?(item_id)
+    have_items.include?(item)
   end
 
   def want(item)
-    current_user.wants.create(item_id: item.id, user_id: current_user.id)
+    wants.create(item_code: item.id)
   end
 
   def unwant(item)
-    current_user.wants.find_by(item_id: item.id, user_id: current_user.id).destroy
+    wants.find_by(item_code: item.id).destroy
   end
 
   def want?(item)
-    current_user.want_items.include?(item_id)
+    want_items.include?(item)
   end
 end
