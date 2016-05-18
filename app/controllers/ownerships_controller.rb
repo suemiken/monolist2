@@ -32,9 +32,6 @@ class OwnershipsController < ApplicationController
       end
     end
   end
-    # TODO ユーザにwant or haveを設定する
-    # params[:type]の値にHaveボタンが押された時には「Have」,
-    # Wantボタンが押された時には「Want」が設定されています。
 
   def destroy
     @item = Item.find(params[:item_id])
