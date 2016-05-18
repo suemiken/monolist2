@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
   has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy
   has_many :want_items , through: :wants, source: :item
   
-  has_many :haves, class_name: "Have", foreign_key: 'user_id', dependent: :destroy
-  has_many :have_item, through: :"haves", source: :item
+
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items , through: :haves, source: :item
 
 
   # 他のユーザーをフォローする
@@ -35,8 +36,8 @@ class User < ActiveRecord::Base
     following_users.include?(other_user)
   end
 
-  ## TODO 実装
   def have(item)
+<<<<<<< HEAD
     current_user.haves.create(item: item.id)
   end
 
@@ -50,13 +51,36 @@ class User < ActiveRecord::Base
 
   def want(item)
     wants.create(item: item.id, user_id: current_user.id)
+=======
+    haves.create(item_id: item.id)
   end
 
+  def unhave(item)
+    haves.find_by(item_id: item.id).destroy
+  end
+
+  def have?(item)
+    have_items.include?(item)
+  end
+
+  def want(item)
+    wants.create(item_id: item.id)
+>>>>>>> have_and_want_btn
+  end
+  
   def unwant(item)
+<<<<<<< HEAD
     current_user.wants.find_by(item: item.id).destroy
   end
 
   def want?(item)
     current_user.want_item?(item)
+=======
+    wants.find_by(item_id: item.id).destroy
+  end
+
+  def want?(item)
+    want_items.include?(item)
+>>>>>>> have_and_want_btn
   end
 end

@@ -9,10 +9,12 @@ class ItemsController < ApplicationController
         imageFlag: 1,
       )
       @items = response.first(20)
+      
     end
   end
 
   def show
+    @users = @item.haves
   end
 
   private
