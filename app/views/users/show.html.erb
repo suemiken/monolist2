@@ -1,3 +1,19 @@
+<% content_for :title do %>
+  <title><%= @user.name %>-monolist2</title>
+<% end %>
+
+<% content_for :meta_description do %>
+  <meta name="description" content="have:item 
+    <% @user.have_items.each do |item| %>
+      <%= item.title %>
+    <% end %>
+    </br>want:item 
+    <% @user.want_items.each do |item| %>
+      <%= item.title %>
+    <% end %>
+  "></meta>
+<% end %>
+
 <%= render 'profile' , user: @user %>
 
 

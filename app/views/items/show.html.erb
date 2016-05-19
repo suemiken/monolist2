@@ -1,3 +1,19 @@
+<% content_for :title do %>
+  <title><%= @item.title %>-monolist2</title>
+<% end %>
+
+<% content_for :meta_description do %>
+  <meta name="description" content="have:user
+    <% @have_users.each do |user| %>
+      <%= user.name %>
+    <% end %>
+    </br>want:user
+    <% @want_users.each do |user| %>
+      <%= user.name %>
+    <% end %>
+  "></meta>
+<% end %>
+
 <div class="container">
   <div class="container-inner inner-sm clearfix">
     <div class="item-single-main">
@@ -19,28 +35,23 @@
       <div class="side-box">
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
-           <% @have_users.each do |user| %>
-            <ol>
-             <%= gravatar_for user, size: 50 %>
-             <%= user.name %>
-            </ol>
-           <% end %>
+         <% @have_users.each do |user| %>
+           <%= link_to (gravatar_for user, size: 50) , user_path(user.id) %>
+           <%= user.name %>
+          <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
           <% @want_users.each do |user| %>
-            <ol>
-             <%= gravatar_for user, size: 50 %>
-             <%= user.name %>
-            </ol>
-           <% end %>
+           <%= gravatar_for user, size: 50 %>
+           <%= user.name %>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
-        <% #TODO 正しいリンク先に %>
-        <%= link_to('楽天詳細ページへ', '#') %>
+        <%= link_to('楽天詳細ページへ', @item.detail_page_url) %>
       </div>
     </div>
   </div>
