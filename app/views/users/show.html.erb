@@ -3,15 +3,7 @@
 <% end %>
 
 <% content_for :meta_description do %>
-  <meta name="description" content="have:item 
-    <% @user.have_items.each do |item| %>
-      <%= item.title %>
-    <% end %>
-    </br>want:item 
-    <% @user.want_items.each do |item| %>
-      <%= item.title %>
-    <% end %>
-  "></meta>
+  <meta name="description" content="have:item <% @user.have_items.each do |item| %><%= item.title %> <% end %>want:item<% @user.want_items.each do |item| %><%= item.title %> <% end %>">
 <% end %>
 
 <%= render 'profile' , user: @user %>
