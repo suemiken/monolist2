@@ -19,16 +19,23 @@
       <div class="side-box">
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
-           <% @users.each do |user| %>
-             <%= gravatar_for user, size: 100 %>
+           <% @have_users.each do |user| %>
+            <ol>
+             <%= gravatar_for user, size: 50 %>
+             <%= user.name %>
+            </ol>
            <% end %>
-          
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
-          <% # TODO Wantしたユーザー一覧 %>
+          <% @want_users.each do |user| %>
+            <ol>
+             <%= gravatar_for user, size: 50 %>
+             <%= user.name %>
+            </ol>
+           <% end %>
         </div>
       </div>
       <div class="text-center">
